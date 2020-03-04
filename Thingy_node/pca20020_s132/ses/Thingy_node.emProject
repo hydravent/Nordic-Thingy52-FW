@@ -19,15 +19,15 @@
       project_directory=""
       project_type="Executable" />
     <folder Name="Internal Files">
-      <file file_name="../../../sdk_components/toolchain/system_nrf52.c" />
+      <file file_name="../../../external/sdk13/components/toolchain/system_nrf52.c" />
       <file file_name="ses_nrf52_startup.s" />
       <file file_name="thumb_crt0.s" />
     </folder>
     <configuration
       Name="release_v1_0_0"
-      c_preprocessor_definitions="NRF52_SERIES;SD_BLE_API_VERSION=4;NRF52;NRF52832;NRF52832_XXAA;BLE_STACK_SUPPORT_REQD;__HEAP_SIZE=0;S132;NRF_SD_BLE_API_VERSION=4;NRF52_PAN_12;NRF52_PAN_15;NRF52_PAN_20;NRF52_PAN_30;NRF52_PAN_31;NRF52_PAN_36;NRF52_PAN_51;NRF52_PAN_53;NRF52_PAN_54;NRF52_PAN_55;NRF52_PAN_58;NRF52_PAN_62;NRF52_PAN_63;NRF52_PAN_64;SOFTDEVICE_PRESENT;SWI_DISABLE0;BSP_DEFINES_ONLY;ARM_MATH_CM4;NRF_LOG_USES_RTT=1;BLE_DFU_APP_SUPPORT;NRF_DFU_SETTINGS_VERSION=1;DEBUG;NRF_LOG_ENABLED=1"
-      c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../../../mesh_sdk/models/simple_thingy/include;../config;sdk_mod;../../../external/sdk13_override;../../../external/segger_rtt;../../../include/ble_services;../../../include/board;../../../include/drivers;../../../include/macros;../../../include/modules;../../../include/util;../../../mesh_sdk/models/config/include;../../../mesh_sdk/models/health/include;../../../mesh_sdk/mesh/core/api;../../../mesh_sdk/mesh/core/include;../../../mesh_sdk/mesh/dfu/api;../../../mesh_sdk/mesh/dfu/include;../../../mesh_sdk/mesh/prov/api;../../../mesh_sdk/mesh/prov/include;../../../mesh_sdk/mesh/bearer/api;../../../mesh_sdk/mesh/bearer/include;../../../mesh_sdk/mesh/access/api;../../../mesh_sdk/mesh/access/include;../../../mesh_sdk/external/micro-ecc;../../../mesh_sdk/examples;../../../sdk_components/ble/ble_advertising;../../../sdk_components/ble/ble_services/ble_bas;../../../sdk_components/ble/ble_services/ble_dfu;../../../sdk_components/ble/common;../../../sdk_components/drivers_nrf/clock;../../../sdk_components/drivers_nrf/common;../../../sdk_components/drivers_nrf/config;../../../sdk_components/drivers_nrf/delay;../../../sdk_components/drivers_nrf/gpiote;../../../sdk_components/drivers_nrf/hal;../../../sdk_components/drivers_nrf/saadc;../../../sdk_components/drivers_nrf/twi_master;../../../sdk_components/drivers_nrf/uart;../../../sdk_components/libraries/bootloader/dfu;../../../sdk_components/libraries/button;../../../sdk_components/libraries/crc32;../../../sdk_components/libraries/experimental_section_vars;../../../sdk_components/libraries/fds;../../../sdk_components/libraries/fifo;../../../sdk_components/libraries/fstorage;../../../sdk_components/libraries/led_softblink;../../../sdk_components/libraries/log;../../../sdk_components/libraries/log/src;../../../sdk_components/libraries/low_power_pwm;../../../sdk_components/libraries/queue;../../../sdk_components/libraries/scheduler;../../../sdk_components/libraries/strerror/;../../../sdk_components/libraries/timer;../../../sdk_components/libraries/trace;../../../sdk_components/libraries/uart;../../../sdk_components/libraries/util;../../../sdk_components/softdevice/common/softdevice_handler;../../../sdk_components/softdevice/s132/headers;../../../sdk_components/softdevice/s132/headers/nrf52;../../../sdk_components/toolchain;../../../sdk_components/device"
-      debug_additional_load_file="$(ProjectDir)/../../../sdk_components/softdevice/s132/hex/s132_nrf52_4.0.2_softdevice.hex"
+      c_preprocessor_definitions="BOARD_PCA20020;NRF52_SERIES;SD_BLE_API_VERSION=4;NRF52;NRF52832;NRF52832_XXAA;BLE_STACK_SUPPORT_REQD;__HEAP_SIZE=0;S132;NRF_SD_BLE_API_VERSION=4;NRF52_PAN_12;NRF52_PAN_15;NRF52_PAN_20;NRF52_PAN_30;NRF52_PAN_31;NRF52_PAN_36;NRF52_PAN_51;NRF52_PAN_53;NRF52_PAN_54;NRF52_PAN_55;NRF52_PAN_58;NRF52_PAN_62;NRF52_PAN_63;NRF52_PAN_64;SOFTDEVICE_PRESENT;SWI_DISABLE0;BSP_DEFINES_ONLY;ARM_MATH_CM4;NRF_LOG_USES_RTT=1;BLE_DFU_APP_SUPPORT;NRF_DFU_SETTINGS_VERSION=1;DEBUG;NRF_LOG_ENABLED=1"
+      c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../../../mesh_sdk/models/simple_thingy/include;../config;sdk_mod;../../../external/sdk13_override;../../../external/sdk13/external/segger_rtt;../../../include/ble_services;../../../include/board;../../../include/drivers;../../../include/macros;../../../include/modules;../../../include/util;../../../mesh_sdk/models/config/include;../../../mesh_sdk/models/health/include;../../../mesh_sdk/mesh/core/api;../../../mesh_sdk/mesh/core/include;../../../mesh_sdk/mesh/dfu/api;../../../mesh_sdk/mesh/dfu/include;../../../mesh_sdk/mesh/prov/api;../../../mesh_sdk/mesh/prov/include;../../../mesh_sdk/mesh/bearer/api;../../../mesh_sdk/mesh/bearer/include;../../../mesh_sdk/mesh/access/api;../../../mesh_sdk/mesh/access/include;../../../mesh_sdk/external/micro-ecc;../../../mesh_sdk/examples;../../../external/sdk13/components/ble/ble_advertising;../../../external/sdk13/components/ble/ble_services/ble_bas;../../../external/sdk13/components/ble/ble_services/ble_dfu;../../../external/sdk13/components/ble/common;../../../external/sdk13/components/drivers_nrf/clock;../../../external/sdk13/components/drivers_nrf/common;../../../external/sdk13/components/drivers_nrf/config;../../../external/sdk13/components/drivers_nrf/delay;../../../external/sdk13/components/drivers_nrf/gpiote;../../../external/sdk13/components/drivers_nrf/hal;../../../external/sdk13/components/drivers_nrf/saadc;../../../external/sdk13/components/drivers_nrf/twi_master;../../../external/sdk13/components/drivers_nrf/uart;../../../external/sdk13/components/libraries/bootloader/dfu;../../../external/sdk13/components/libraries/button;../../../external/sdk13/components/libraries/crc32;../../../external/sdk13/components/libraries/experimental_section_vars;../../../external/sdk13/components/libraries/fds;../../../external/sdk13/components/libraries/fifo;../../../external/sdk13/components/libraries/fstorage;../../../external/sdk13/components/libraries/led_softblink;../../../external/sdk13/components/libraries/log;../../../external/sdk13/components/libraries/log/src;../../../external/sdk13/components/libraries/low_power_pwm;../../../external/sdk13/components/libraries/queue;../../../external/sdk13/components/libraries/scheduler;../../../external/sdk13/components/libraries/strerror/;../../../external/sdk13/components/libraries/timer;../../../external/sdk13/components/libraries/trace;../../../external/sdk13/components/libraries/uart;../../../external/sdk13/components/libraries/util;../../../external/sdk13/components/softdevice/common/softdevice_handler;../../../external/sdk13/components/softdevice/s132/headers;../../../external/sdk13/components/softdevice/s132/headers/nrf52;../../../external/sdk13/components/toolchain;../../../external/sdk13/components/device;../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/bsp;../../../../nRF5_SDK_15.3.0_59ac345/components/boards;../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/include;../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx;../../../../nRF5_SDK_15.3.0_59ac345/integration/nrfx;../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/log;../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/log/src;../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/pwm;../../../../nRF5_SDK_15.3.0_59ac345/integration/nrfx/legacy"
+      debug_additional_load_file="$(ProjectDir)/../../../external/sdk13/components/softdevice/s132/hex/s132_nrf52_4.0.2_softdevice.hex"
       linker_output_format="hex"
       linker_printf_fmt_level="long"
       linker_printf_width_precision_supported="Yes" />
@@ -55,38 +55,47 @@
     </folder>
     <folder Name="Thingy_libraries" />
     <folder Name="nRF_BLE">
-      <file file_name="../../../sdk_components/ble/common/ble_advdata.c" />
-      <file file_name="../../../sdk_components/ble/ble_advertising/ble_advertising.c" />
-      <file file_name="../../../sdk_components/ble/common/ble_conn_params.c" />
-      <file file_name="../../../sdk_components/ble/common/ble_conn_state.c" />
-      <file file_name="../../../sdk_components/ble/common/ble_srv_common.c" />
+      <file file_name="../../../external/sdk13/components/ble/common/ble_advdata.c" />
+      <file file_name="../../../external/sdk13/components/ble/ble_advertising/ble_advertising.c" />
+      <file file_name="../../../external/sdk13/components/ble/common/ble_conn_params.c" />
+      <file file_name="../../../external/sdk13/components/ble/common/ble_conn_state.c" />
+      <file file_name="../../../external/sdk13/components/ble/common/ble_srv_common.c" />
       <file file_name="../../../source/ble_services/ble_uis.c" />
     </folder>
     <folder Name="nRF_Drivers">
-      <file file_name="../../../sdk_components/drivers_nrf/common/nrf_drv_common.c" />
-      <file file_name="../../../sdk_components/drivers_nrf/gpiote/nrf_drv_gpiote.c" />
-      <file file_name="../../../sdk_components/drivers_nrf/twi_master/nrf_drv_twi.c" />
-      <file file_name="../../../sdk_components/drivers_nrf/clock/nrf_drv_clock.c" />
-      <file file_name="../../../sdk_components/drivers_nrf/saadc/nrf_drv_saadc.c" />
-      <file file_name="../../../sdk_components/drivers_nrf/hal/nrf_saadc.c" />
-      <file file_name="../../../sdk_components/drivers_nrf/hal/nrf_nvmc.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/common/nrf_drv_common.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/gpiote/nrf_drv_gpiote.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/twi_master/nrf_drv_twi.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/clock/nrf_drv_clock.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/saadc/nrf_drv_saadc.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/hal/nrf_saadc.c" />
+      <file file_name="../../../external/sdk13/components/drivers_nrf/hal/nrf_nvmc.c" />
+	  
+	  <file file_name="../../../external/sdk13/components/drivers_nrf/ppi/nrf_drv_ppi.c" />	  
+  	  <file file_name="../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/soc/nrfx_atomic.c" />
+      <file file_name="../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/src/nrfx_gpiote.c" />
+      <file file_name="../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/src/nrfx_ppi.c" />
+      <file file_name="../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/src/nrfx_timer.c" />
     </folder>
     <folder Name="nRF_Libraries">
-      <file file_name="../../../sdk_components/libraries/queue/nrf_queue.c" />
-      <file file_name="../../../sdk_components/libraries/button/app_button.c" />
-      <file file_name="../../../sdk_components/libraries/util/app_error.c" />
-      <file file_name="../../../sdk_components/libraries/scheduler/app_scheduler.c" />
-      <file file_name="../../../sdk_components/libraries/timer/app_timer.c" />
-      <file file_name="../../../sdk_components/libraries/util/nrf_assert.c" />
-      <file file_name="../../../sdk_components/libraries/uart/retarget.c" />
-      <file file_name="../../../sdk_components/libraries/led_softblink/led_softblink.c" />
-      <file file_name="../../../sdk_components/libraries/low_power_pwm/low_power_pwm.c" />
-      <file file_name="../../../sdk_components/libraries/fstorage/fstorage.c" />
-      <file file_name="../../../sdk_components/libraries/util/app_util_platform.c" />
-      <file file_name="../../../sdk_components/libraries/fds/fds.c" />
-      <file file_name="../../../sdk_components/libraries/util/sdk_mapped_flags.c" />
-      <file file_name="../../../sdk_components/libraries/crc32/crc32.c" />
-      <file file_name="../../../sdk_components/ble/ble_services/ble_dfu/ble_dfu.c" />
+      <file file_name="../../../external/sdk13/components/libraries/queue/nrf_queue.c" />
+      <file file_name="../../../external/sdk13/components/libraries/button/app_button.c" />
+      <file file_name="../../../external/sdk13/components/libraries/util/app_error.c" />
+      <file file_name="../../../external/sdk13/components/libraries/scheduler/app_scheduler.c" />
+      <file file_name="../../../external/sdk13/components/libraries/timer/app_timer.c" />
+      <file file_name="../../../external/sdk13/components/libraries/util/nrf_assert.c" />
+      <file file_name="../../../external/sdk13/components/libraries/uart/retarget.c" />
+      <file file_name="../../../external/sdk13/components/libraries/led_softblink/led_softblink.c" />
+      <file file_name="../../../external/sdk13/components/libraries/low_power_pwm/low_power_pwm.c" />
+      <file file_name="../../../external/sdk13/components/libraries/fstorage/fstorage.c" />
+      <file file_name="../../../external/sdk13/components/libraries/util/app_util_platform.c" />
+      <file file_name="../../../external/sdk13/components/libraries/fds/fds.c" />
+      <file file_name="../../../external/sdk13/components/libraries/util/sdk_mapped_flags.c" />
+      <file file_name="../../../external/sdk13/components/libraries/crc32/crc32.c" />
+      <file file_name="../../../external/sdk13/components/ble/ble_services/ble_dfu/ble_dfu.c" />
+	  
+	  <file file_name="../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/pwm/app_pwm.c" />
+	  
     </folder>
     <folder Name="nRF_SoftDevice">
       <file file_name="../../../external/sdk13/components/softdevice/s132/doc/s132_nrf52_4.0.2_licence-agreement.txt" />
@@ -94,13 +103,13 @@
       <file file_name="sdk_mod/softdevice_handler.c" />
     </folder>
     <folder Name="nRF_Log">
-      <file file_name="../../../sdk_components/libraries/log/src/nrf_log_frontend.c" />
-      <file file_name="../../../sdk_components/libraries/log/src/nrf_log_backend_serial.c" />
-      <file file_name="../../../sdk_components/libraries/strerror/nrf_strerror.c" />
+      <file file_name="../../../external/sdk13/components/libraries/log/src/nrf_log_frontend.c" />
+      <file file_name="../../../external/sdk13/components/libraries/log/src/nrf_log_backend_serial.c" />
+      <file file_name="../../../external/sdk13/components/libraries/strerror/nrf_strerror.c" />
     </folder>
     <folder Name="nRF_Segger_RTT">
-      <file file_name="../../../external/segger_rtt/SEGGER_RTT.c" />
-      <file file_name="../../../external/segger_rtt/SEGGER_RTT_printf.c" />
+      <file file_name="../../../external/sdk13/external/segger_rtt/SEGGER_RTT.c" />
+      <file file_name="../../../external/sdk13/external/segger_rtt/SEGGER_RTT_printf.c" />
       <file file_name="sdk_mod/SEGGER_RTT_Syscalls_SES.c" />
     </folder>
     <folder Name="Mesh_Core">
@@ -190,7 +199,7 @@
         <configuration
           Name="debug_v1_0_0"
           c_preprocessor_definitions="uECC_OPTIMIZATION_LEVEL=2;uECC_SUPPORTS_secp160r1=0;uECC_SUPPORTS_secp192r1=0;uECC_SUPPORTS_secp224r1=0;uECC_SUPPORTS_secp256r1=1;uECC_SUPPORTS_secp256k1=0;uECC_SUPPORT_COMPRESSED_POINT=0"
-          c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../config;sdk_mod;../../../external/sdk13_override;../../../external/segger_rtt;../../../include/ble_services;../../../include/board;../../../include/drivers;../../../include/macros;../../../include/modules;../../../include/util;../../../mesh_sdk/models/simple_thingy/include;../../../mesh_sdk/models/config/include;../../../mesh_sdk/models/health/include;../../../mesh_sdk/mesh/core/api;../../../mesh_sdk/mesh/core/include;../../../mesh_sdk/mesh/dfu/api;../../../mesh_sdk/mesh/dfu/include;../../../mesh_sdk/mesh/prov/api;../../../mesh_sdk/mesh/prov/include;../../../mesh_sdk/mesh/bearer/api;../../../mesh_sdk/mesh/bearer/include;../../../mesh_sdk/mesh/access/api;../../../mesh_sdk/mesh/access/include;../../../mesh_sdk/examples/light_switch/server/include;../../../mesh_sdk/external/micro-ecc;../../../mesh_sdk/examples;../../../mesh_sdk/examples/light_switch/include;../../../sdk_components/ble/ble_advertising;../../../sdk_components/ble/ble_services/ble_bas;../../../sdk_components/ble/ble_services/ble_dfu;../../../sdk_components/ble/common;../../../sdk_components/drivers_nrf/clock;../../../sdk_components/drivers_nrf/common;../../../sdk_components/drivers_nrf/config;../../../sdk_components/drivers_nrf/delay;../../../sdk_components/drivers_nrf/gpiote;../../../sdk_components/drivers_nrf/hal;../../../sdk_components/drivers_nrf/saadc;../../../sdk_components/drivers_nrf/twi_master;../../../sdk_components/drivers_nrf/uart;../../../sdk_components/libraries/bootloader/dfu;../../../sdk_components/libraries/button;../../../sdk_components/libraries/crc32;../../../sdk_components/libraries/experimental_section_vars;../../../sdk_components/libraries/fds;../../../sdk_components/libraries/fifo;../../../sdk_components/libraries/fstorage;../../../sdk_components/libraries/led_softblink;../../../sdk_components/libraries/log;../../../sdk_components/libraries/log/src;../../../sdk_components/libraries/low_power_pwm;../../../sdk_components/libraries/queue;../../../sdk_components/libraries/scheduler;../../../sdk_components/libraries/strerror/;../../../sdk_components/libraries/timer;../../../sdk_components/libraries/trace;../../../sdk_components/libraries/uart;../../../sdk_components/libraries/util;../../../sdk_components/softdevice/common/softdevice_handler;../../../sdk_components/softdevice/s132/headers;../../../sdk_components/softdevice/s132/headers/nrf52;../../../sdk_components/toolchain;../../../sdk_components/device" />
+          c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../config;sdk_mod;../../../external/sdk13_override;../../../external/sdk13/external/segger_rtt;../../../include/ble_services;../../../include/board;../../../include/drivers;../../../include/macros;../../../include/modules;../../../include/util;../../../mesh_sdk/models/simple_thingy/include;../../../mesh_sdk/models/config/include;../../../mesh_sdk/models/health/include;../../../mesh_sdk/mesh/core/api;../../../mesh_sdk/mesh/core/include;../../../mesh_sdk/mesh/dfu/api;../../../mesh_sdk/mesh/dfu/include;../../../mesh_sdk/mesh/prov/api;../../../mesh_sdk/mesh/prov/include;../../../mesh_sdk/mesh/bearer/api;../../../mesh_sdk/mesh/bearer/include;../../../mesh_sdk/mesh/access/api;../../../mesh_sdk/mesh/access/include;../../../mesh_sdk/examples/light_switch/server/include;../../../mesh_sdk/external/micro-ecc;../../../mesh_sdk/examples;../../../mesh_sdk/examples/light_switch/include;../../../external/sdk13/components/ble/ble_advertising;../../../external/sdk13/components/ble/ble_services/ble_bas;../../../external/sdk13/components/ble/ble_services/ble_dfu;../../../external/sdk13/components/ble/common;../../../external/sdk13/components/drivers_nrf/clock;../../../external/sdk13/components/drivers_nrf/common;../../../external/sdk13/components/drivers_nrf/config;../../../external/sdk13/components/drivers_nrf/delay;../../../external/sdk13/components/drivers_nrf/gpiote;../../../external/sdk13/components/drivers_nrf/hal;../../../external/sdk13/components/drivers_nrf/saadc;../../../external/sdk13/components/drivers_nrf/twi_master;../../../external/sdk13/components/drivers_nrf/uart;../../../external/sdk13/components/libraries/bootloader/dfu;../../../external/sdk13/components/libraries/button;../../../external/sdk13/components/libraries/crc32;../../../external/sdk13/components/libraries/experimental_section_vars;../../../external/sdk13/components/libraries/fds;../../../external/sdk13/components/libraries/fifo;../../../external/sdk13/components/libraries/fstorage;../../../external/sdk13/components/libraries/led_softblink;../../../external/sdk13/components/libraries/log;../../../external/sdk13/components/libraries/log/src;../../../external/sdk13/components/libraries/low_power_pwm;../../../external/sdk13/components/libraries/queue;../../../external/sdk13/components/libraries/scheduler;../../../external/sdk13/components/libraries/strerror/;../../../external/sdk13/components/libraries/timer;../../../external/sdk13/components/libraries/trace;../../../external/sdk13/components/libraries/uart;../../../external/sdk13/components/libraries/util;../../../external/sdk13/components/softdevice/common/softdevice_handler;../../../external/sdk13/components/softdevice/s132/headers;../../../external/sdk13/components/softdevice/s132/headers/nrf52;../../../external/sdk13/components/toolchain;../../../external/sdk13/components/device" />
       </file>
     </folder>
     <folder Name="Mesh_Example">
@@ -208,9 +217,8 @@
     <configuration
       Name="debug_v1_0_0"
       c_preprocessor_definitions="NRF52_SERIES;SD_BLE_API_VERSION=4;NRF52;NRF52832;NRF52832_XXAA;BLE_STACK_SUPPORT_REQD;__HEAP_SIZE=0;S132;NRF_SD_BLE_API_VERSION=4;NRF52_PAN_12;NRF52_PAN_15;NRF52_PAN_20;NRF52_PAN_30;NRF52_PAN_31;NRF52_PAN_36;NRF52_PAN_51;NRF52_PAN_53;NRF52_PAN_54;NRF52_PAN_55;NRF52_PAN_58;NRF52_PAN_62;NRF52_PAN_63;NRF52_PAN_64;SOFTDEVICE_PRESENT;SWI_DISABLE0;BSP_DEFINES_ONLY;ARM_MATH_CM4;NRF_LOG_USES_RTT=1;BLE_DFU_APP_SUPPORT;NRF_DFU_SETTINGS_VERSION=1;DEBUG;NRF_LOG_ENABLED=1"
-      c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../../../mesh_sdk/models/simple_thingy/include;../config;sdk_mod;../../../external/sdk13_override;../../../external/segger_rtt;../../../include/ble_services;../../../include/board;../../../include/drivers;../../../include/macros;../../../include/modules;../../../include/util;../../../mesh_sdk/models/config/include;../../../mesh_sdk/models/health/include;../../../mesh_sdk/mesh/core/api;../../../mesh_sdk/mesh/core/include;../../../mesh_sdk/mesh/dfu/api;../../../mesh_sdk/mesh/dfu/include;../../../mesh_sdk/mesh/prov/api;../../../mesh_sdk/mesh/prov/include;../../../mesh_sdk/mesh/bearer/api;../../../mesh_sdk/mesh/bearer/include;../../../mesh_sdk/mesh/access/api;../../../mesh_sdk/mesh/access/include;../../../mesh_sdk/external/micro-ecc;../../../mesh_sdk/examples;../../../sdk_components/ble/ble_advertising;../../../sdk_components/ble/ble_services/ble_bas;../../../sdk_components/ble/ble_services/ble_dfu;../../../sdk_components/ble/common;../../../sdk_components/drivers_nrf/clock;../../../sdk_components/drivers_nrf/common;../../../sdk_components/drivers_nrf/config;../../../sdk_components/drivers_nrf/delay;../../../sdk_components/drivers_nrf/gpiote;../../../sdk_components/drivers_nrf/hal;../../../sdk_components/drivers_nrf/saadc;../../../sdk_components/drivers_nrf/twi_master;../../../sdk_components/drivers_nrf/uart;../../../sdk_components/libraries/bootloader/dfu;../../../sdk_components/libraries/button;../../../sdk_components/libraries/crc32;../../../sdk_components/libraries/experimental_section_vars;../../../sdk_components/libraries/fds;../../../sdk_components/libraries/fifo;../../../sdk_components/libraries/fstorage;../../../sdk_components/libraries/led_softblink;../../../sdk_components/libraries/log;../../../sdk_components/libraries/log/src;../../../sdk_components/libraries/low_power_pwm;../../../sdk_components/libraries/queue;../../../sdk_components/libraries/scheduler;../../../sdk_components/libraries/strerror/;../../../sdk_components/libraries/timer;../../../sdk_components/libraries/trace;../../../sdk_components/libraries/uart;../../../sdk_components/libraries/util;../../../sdk_components/softdevice/common/softdevice_handler;../../../sdk_components/softdevice/s132/headers;../../../sdk_components/softdevice/s132/headers/nrf52;../../../sdk_components/toolchain;../../../sdk_components/device"
-
-      debug_additional_load_file="$(ProjectDir)/../../../sdk_components/softdevice/s132/hex/s132_nrf52_4.0.2_softdevice.hex"
+      c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../../../mesh_sdk/models/simple_thingy/include;../config;sdk_mod;../../../external/sdk13_override;../../../external/sdk13/external/segger_rtt;../../../include/ble_services;../../../include/board;../../../include/drivers;../../../include/macros;../../../include/modules;../../../include/util;../../../mesh_sdk/models/config/include;../../../mesh_sdk/models/health/include;../../../mesh_sdk/mesh/core/api;../../../mesh_sdk/mesh/core/include;../../../mesh_sdk/mesh/dfu/api;../../../mesh_sdk/mesh/dfu/include;../../../mesh_sdk/mesh/prov/api;../../../mesh_sdk/mesh/prov/include;../../../mesh_sdk/mesh/bearer/api;../../../mesh_sdk/mesh/bearer/include;../../../mesh_sdk/mesh/access/api;../../../mesh_sdk/mesh/access/include;../../../mesh_sdk/external/micro-ecc;../../../mesh_sdk/examples;../../../external/sdk13/components/ble/ble_advertising;../../../external/sdk13/components/ble/ble_services/ble_bas;../../../external/sdk13/components/ble/ble_services/ble_dfu;../../../external/sdk13/components/ble/common;../../../external/sdk13/components/drivers_nrf/clock;../../../external/sdk13/components/drivers_nrf/common;../../../external/sdk13/components/drivers_nrf/config;../../../external/sdk13/components/drivers_nrf/delay;../../../external/sdk13/components/drivers_nrf/gpiote;../../../external/sdk13/components/drivers_nrf/hal;../../../external/sdk13/components/drivers_nrf/saadc;../../../external/sdk13/components/drivers_nrf/twi_master;../../../external/sdk13/components/drivers_nrf/uart;../../../external/sdk13/components/libraries/bootloader/dfu;../../../external/sdk13/components/libraries/button;../../../external/sdk13/components/libraries/crc32;../../../external/sdk13/components/libraries/experimental_section_vars;../../../external/sdk13/components/libraries/fds;../../../external/sdk13/components/libraries/fifo;../../../external/sdk13/components/libraries/fstorage;../../../external/sdk13/components/libraries/led_softblink;../../../external/sdk13/components/libraries/log;../../../external/sdk13/components/libraries/log/src;../../../external/sdk13/components/libraries/low_power_pwm;../../../external/sdk13/components/libraries/queue;../../../external/sdk13/components/libraries/scheduler;../../../external/sdk13/components/libraries/strerror/;../../../external/sdk13/components/libraries/timer;../../../external/sdk13/components/libraries/trace;../../../external/sdk13/components/libraries/uart;../../../external/sdk13/components/libraries/util;../../../external/sdk13/components/softdevice/common/softdevice_handler;../../../external/sdk13/components/softdevice/s132/headers;../../../external/sdk13/components/softdevice/s132/headers/nrf52;../../../external/sdk13/components/toolchain;../../../external/sdk13/components/device"
+      debug_additional_load_file="$(ProjectDir)/../../../external/sdk13/components/softdevice/s132/hex/s132_nrf52_4.0.2_softdevice.hex"
       linker_output_format="hex"
       linker_printf_fmt_level="long"
       linker_printf_width_precision_supported="Yes"

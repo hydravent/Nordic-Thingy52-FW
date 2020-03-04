@@ -96,6 +96,18 @@ simple_thingy_server_t m_server;
 #define SCHED_MAX_EVENT_DATA_SIZE   MAX(APP_TIMER_SCHED_EVENT_DATA_SIZE, BLE_STACK_HANDLER_SCHED_EVT_SIZE) /**< Maximum size of scheduler events. */
 #define SCHED_QUEUE_SIZE            60  /**< Maximum number of events in the scheduler queue. */
 
+/* added by Brandon */
+#include "nrf.h"
+#include "app_error.h"
+#include "bsp.h"
+#include "nrf_delay.h"
+#include "app_pwm.h"
+
+
+APP_PWM_INSTANCE(PWM1,1); 
+
+/* ----- */
+
 static const nrf_drv_twi_t     m_twi_sensors = NRF_DRV_TWI_INSTANCE(TWI_SENSOR_INSTANCE);
 APP_TIMER_DEF(m_sensor_timer_id);       // Sensor feedback timer
 
@@ -287,6 +299,10 @@ static void sensor_set_cb(const simple_thingy_server_t * server, sensor_config_t
         case SENSOR_REPORT_EVERY_1S:
             app_timer_stop(m_sensor_timer_id);
             app_timer_start(m_sensor_timer_id, APP_TIMER_TICKS(1000), NULL);
+            break;
+        case SENSOR_REPORT_EVERY_3S:
+            app_timer_stop(m_sensor_timer_id);
+            app_timer_start(m_sensor_timer_id, APP_TIMER_TICKS(3000), NULL);
             break;
         case SENSOR_REPORT_EVERY_5S:
             app_timer_stop(m_sensor_timer_id);
