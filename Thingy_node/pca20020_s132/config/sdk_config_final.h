@@ -4779,11 +4779,10 @@
 
 // <q> APP_PWM_ENABLED  - app_pwm - PWM functionality
  
-/* modified by Brandon */
+
 #ifndef APP_PWM_ENABLED
 #define APP_PWM_ENABLED 1
 #endif
-/* ---------- */
 
 // <e> APP_SCHEDULER_ENABLED - app_scheduler - Events scheduler
 //==========================================================

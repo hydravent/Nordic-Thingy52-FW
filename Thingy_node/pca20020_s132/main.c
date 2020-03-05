@@ -105,7 +105,7 @@ simple_thingy_server_t m_server;
 
 
 APP_PWM_INSTANCE(PWM1,1); 
-
+static volatile bool ready_flag; 
 /* ----- */
 
 static const nrf_drv_twi_t     m_twi_sensors = NRF_DRV_TWI_INSTANCE(TWI_SENSOR_INSTANCE);
@@ -325,6 +325,64 @@ static void sensor_set_cb(const simple_thingy_server_t * server, sensor_config_t
     
 }
 
+
+/* added by Brandon */
+void servo_stop()
+{
+    app_pwm_disable(&PWM1);
+    nrf_gpio_pin_clear(2);
+    nrf_gpio_pin_clear(3);
+} 
+
+void vent_open_cb(const simple_thingy_server_t * server)
+{
+  uint32_t value = 0;
+
+  servo_stop();  
+
+  app_pwm_enable(&PWM1);
+  nrf_gpio_cfg_output(2);
+  nrf_gpio_cfg_output(3);
+
+  for (uint8_t i = 0; i < 20; i++) {
+    value = i * 5;
+
+    /* Set the duty cycle - keep trying until PWM is ready... */
+    while (app_pwm_channel_duty_set(&PWM1, 0, value) == NRF_ERROR_BUSY)
+      ;
+
+    APP_ERROR_CHECK(app_pwm_channel_duty_set(&PWM1, 1, value));
+    nrf_delay_ms(25);    
+  } 
+
+  servo_stop();
+}
+
+void vent_close_cb(const simple_thingy_server_t * server)
+{
+  uint32_t value = 0;
+
+  servo_stop();  
+
+  app_pwm_enable(&PWM1);
+  nrf_gpio_cfg_output(2);
+  nrf_gpio_cfg_output(3);
+
+  for (uint8_t i = 0; i < 20; i++) {
+    value = 100 - i * 5;
+
+    /* Set the duty cycle - keep trying until PWM is ready... */
+    while (app_pwm_channel_duty_set(&PWM1, 0, value) == NRF_ERROR_BUSY)
+      ;
+
+    APP_ERROR_CHECK(app_pwm_channel_duty_set(&PWM1, 1, value));
+    nrf_delay_ms(25);    
+  } 
+
+  servo_stop();  
+}
+/* ---------- */
+
 static void configuration_setup(void * p_unused)
 {
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Initializing and adding models\n")
@@ -384,6 +442,33 @@ void sensor_init()
     app_timer_create(&m_sensor_timer_id, APP_TIMER_MODE_REPEATED, sensor_timer_handler);
 
 }
+
+
+/* added by Brandon */
+void pwm_ready_callback(uint32_t pwm_id)    // PWM callback function. (For Servo Motor)
+{
+    ready_flag = true;
+}
+
+void servo_config()
+{
+    ret_code_t err_code;
+//   app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_1CH(5000L, 2);
+   app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_2CH(5000L, 2, 3);
+
+    /* Switch the polarity of the second channel. */
+    pwm1_cfg.pin_polarity[1] = APP_PWM_POLARITY_ACTIVE_HIGH;
+
+    /* Initialize and enable PWM. */
+    err_code = app_pwm_init(&PWM1, &pwm1_cfg, pwm_ready_callback);
+    APP_ERROR_CHECK(err_code);
+    app_pwm_enable(&PWM1);
+    nrf_gpio_cfg_output(2);
+    nrf_gpio_cfg_output(3);
+}
+/* --------- */
+
+
 /**@brief Application main function.
  */
 int main(void)
@@ -410,15 +495,7 @@ int main(void)
 
     __LOG_INIT(LOG_SRC_APP, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
     
-    // Initialize.
-    APP_SCHED_INIT(SCHED_MAX_EVENT_DATA_SIZE, SCHED_QUEUE_SIZE);
-    err_code = app_timer_init();
-    APP_ERROR_CHECK(err_code);
-
-    board_init();
-    thingy_init();
-    sensor_init();
-    mesh_stack_init();
+   servo_config();
 
     for (;;)
     {

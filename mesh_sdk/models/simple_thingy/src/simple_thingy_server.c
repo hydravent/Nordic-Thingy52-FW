@@ -136,12 +136,32 @@ static void handle_sensor_config_set_cb(access_model_handle_t handle, const acce
     //publish_state(p_server, value);
 }
 
+/* added by Brandon */
+static void handle_vent_open_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
+{
+    simple_thingy_server_t * p_server = p_args;
+    NRF_MESH_ASSERT(p_server->vent_open_cb != NULL);
+
+    p_server->vent_open_cb(p_server);        
+}
+
+static void handle_vent_close_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
+{
+    simple_thingy_server_t * p_server = p_args;
+    NRF_MESH_ASSERT(p_server->vent_close_cb != NULL);
+
+    p_server->vent_close_cb(p_server);  
+}
+/* --------- */
+
 static const access_opcode_handler_t m_opcode_handlers[] =
 {
     {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_LED_SET,            ACCESS_COMPANY_ID_NORDIC), handle_led_set_cb},
     {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_LED_GET,            ACCESS_COMPANY_ID_NORDIC), handle_led_get_cb},
     {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_LED_SET_UNRELIABLE, ACCESS_COMPANY_ID_NORDIC), handle_led_set_unreliable_cb},
-    {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_SENSOR_CONFIG_SET,  ACCESS_COMPANY_ID_NORDIC), handle_sensor_config_set_cb}
+    {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_SENSOR_CONFIG_SET,  ACCESS_COMPANY_ID_NORDIC), handle_sensor_config_set_cb},
+    {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_VENT_OPEN,  ACCESS_COMPANY_ID_NORDIC), handle_vent_open_cb},
+    {ACCESS_OPCODE_VENDOR(SIMPLE_THINGY_OPCODE_VENT_CLOSE,  ACCESS_COMPANY_ID_NORDIC), handle_vent_close_cb}
 };
 
 /*****************************************************************************

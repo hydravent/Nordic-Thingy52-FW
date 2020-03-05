@@ -48,4 +48,15 @@ Output/Thingy_node\ release_v1_0_0/Obj/nrfx_timer.o: \
  ../../../external/sdk13/components/libraries/util/sdk_errors.h \
  ../../../external/sdk13/components/libraries/util/sdk_resources.h \
  ../../../external/sdk13/components/softdevice/s132/headers/nrf_sd_def.h \
- ../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/nrfx_errors.h
+ ../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/nrfx_errors.h \
+ ../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/include/nrfx_timer.h \
+ ../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/hal/nrf_timer.h \
+ ../../../../nRF5_SDK_15.3.0_59ac345/integration/nrfx/nrfx_log.h \
+ ../../../external/sdk13/components/libraries/log/nrf_log.h \
+ ../../../external/sdk13/components/libraries/util/sdk_common.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 4.30c/include/string.h \
+ ../../../external/sdk13/components/libraries/util/sdk_os.h \
+ ../../../external/sdk13/components/libraries/util/app_util.h \
+ ../../../external/sdk13/components/libraries/util/sdk_macros.h \
+ ../../../external/sdk13/components/libraries/strerror/nrf_strerror.h \
+ ../../../external/sdk13/components/libraries/log/src/nrf_log_internal.h

@@ -14,6 +14,8 @@
   <ProjectSessionItem path="Thingy_node_s132_pca20020"/>
   <ProjectSessionItem path="Thingy_node_s132_pca20020;Thingy_node"/>
   <ProjectSessionItem path="Thingy_node_s132_pca20020;Thingy_node;Mesh_simple_thingy"/>
+  <ProjectSessionItem path="Thingy_node_s132_pca20020;Thingy_node;nRF_Drivers"/>
+  <ProjectSessionItem path="Thingy_node_s132_pca20020;Thingy_node;nRF_Libraries"/>
   <ProjectSessionItem path="Thingy_node_s132_pca20020;Thingy_node;Thingy"/>
  </Project>
  <Register1/>
@@ -39,15 +41,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="52" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/components/boards/boards.h" selected="0" top="42" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="421" useTextEdit="1" useBinaryEdit="0" left="0" path="../main.c" selected="1" top="400" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="125" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh_sdk/models/simple_thingy/src/simple_thingy_server.c" selected="0" top="120" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="104" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh_sdk/models/simple_thingy/include/simple_thingy_server.h" selected="0" top="83" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="59" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh_sdk/models/simple_thingy/include/simple_thingy_common.h" selected="0" top="45" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="46" y="74" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/include/nrfx_timer.h" selected="0" top="50" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="111" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/modules/nrfx/drivers/nrfx_common.h" selected="0" top="97" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="55" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/pwm/app_pwm.h" selected="0" top="48" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="58" y="76" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/integration/nrfx/legacy/nrf_drv_timer.h" selected="0" top="60" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="27" y="514" useTextEdit="1" useBinaryEdit="0" left="0" path="../main.c" selected="0" top="509" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="177" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/components/libraries/pwm/app_pwm.c" selected="0" top="165" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="101" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../nRF5_SDK_15.3.0_59ac345/integration/nrfx/legacy/nrf_drv_timer.h" selected="1" top="89" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="Thingy_node" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="release_v1_0_0" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="Thingy_node" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="release_v1_0_0" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

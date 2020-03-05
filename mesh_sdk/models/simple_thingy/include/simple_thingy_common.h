@@ -85,7 +85,9 @@ typedef enum
     SIMPLE_THINGY_OPCODE_LED_SET_UNRELIABLE = 0xC3, /**< Simple Thingy LED Set Unreliable. */
     SIMPLE_THINGY_OPCODE_LED_STATUS = 0xC4,         /**< Simple Thingy LED Status. */
     SIMPLE_THINGY_OPCODE_SENSOR_CONFIG_SET = 0xC5,  /**< Simple Thingy Sensor Config Set. */
-    SIMPLE_THINGY_OPCODE_SENSOR_STATUS = 0xC6       /**< Simple THingy Sensor Status. */
+    SIMPLE_THINGY_OPCODE_SENSOR_STATUS = 0xC6,       /**< Simple THingy Sensor Status. */
+    SIMPLE_THINGY_OPCODE_VENT_OPEN = 0xC7,       /**< Simple THingy Sensor Status. */
+    SIMPLE_THINGY_OPCODE_VENT_CLOSE = 0xC8       /**< Simple THingy Sensor Status. */
 } simple_thingy_opcode_t;
 
 /** Message format for the Simple Thingy LED Set message. */

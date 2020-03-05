@@ -83,13 +83,21 @@ typedef ble_uis_led_t (*simple_thingy_led_set_cb_t)(const simple_thingy_server_t
  */
 typedef void (*simple_thingy_sensor_config_set_cb_t)(const simple_thingy_server_t * p_self, sensor_config_t sensor_cfg);
 
+
 /**
- * Sensor set callback type.
- * @param[in] p_self Pointer to the Simple Thingy Server context structure.
- * @param[in] sensor_cfg Desired state on Thingy node
+ * Vent open callback type.
+ * @param[in] p_self Pointer to the Simple Thingy Server context structure. 
  * @returns 
  */
-typedef void (*simple_thingy_sensor_config_set_cb_t)(const simple_thingy_server_t * p_self, sensor_config_t sensor_cfg);
+typedef void (*simple_thingy_vent_open_cb_t)(const simple_thingy_server_t * p_self);
+
+
+/**
+ * Vent close callback type.
+ * @param[in] p_self Pointer to the Simple Thingy Server context structure. 
+ * @returns 
+ */
+typedef void (*simple_thingy_vent_close_cb_t)(const simple_thingy_server_t * p_self);
 
 
 /** Simple Thingy Server state structure. */
@@ -104,6 +112,10 @@ struct __simple_thingy_server
     /** Set sensor config callback. */
     simple_thingy_sensor_config_set_cb_t sensor_set_cb;
     ble_uis_led_t present_led_status;
+    /* added by Brandon */
+    simple_thingy_vent_open_cb_t vent_open_cb;
+    simple_thingy_vent_close_cb_t vent_close_cb;
+    /* --------- */
 };
 
 /**
