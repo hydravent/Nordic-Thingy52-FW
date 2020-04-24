@@ -130,6 +130,10 @@ APP_TIMER_DEF(m_scan_dev_timer);
 /* Forward declarations */
 static void client_status_cb(const simple_thingy_client_t * p_self, ble_uis_led_t led_status, uint16_t src);
 static void sensor_status_cb(const simple_thingy_client_t * p_self, sensor_reading_t sensor_status, uint16_t src);
+/* added by Brandon */
+static void vent_open_cb(const simple_thingy_client_t * p_self);
+static void vent_close_cb(const simple_thingy_client_t * p_self);
+/* --------- */
 static void health_event_cb(const health_client_t * p_client, const health_client_evt_t * p_event);
 /*****************************************************************************
  * Static functions
@@ -164,6 +168,30 @@ static void sensor_status_cb(const simple_thingy_client_t * p_self, sensor_readi
     ret_packet[2] = status.humidity;
 
     /* added by Brandon */
+//    drv_ext_light_rgb_sequence_t led_sequence = SEQUENCE_DEFAULT_VALUES;
+//    led_sequence.sequence_vals.on_intensity = (uint8_t) (DEFAULT_LED_INTENSITY_PERCENT * 2.55f);
+//    led_sequence.sequence_vals.off_time_ms = 0; // Set to zero so it is detected as one-shot
+//    led_sequence.color = (drv_ext_light_color_mix_t) DRV_EXT_LIGHT_COLOR_RED;   
+//    drv_ext_light_rgb_sequence(DRV_EXT_RGB_LED_LIGHTWELL, &led_sequence);
+    /* ----- */
+
+    nus_response_send(NUS_RSP_SENSOR_READING, server_index, ret_packet, sizeof(ret_packet));
+}
+
+/* added by Brandon */
+static void vent_status_cb(const simple_thingy_client_t * p_self)
+{
+    uint8_t ret_packet[3];
+//    NRF_LOG_INFO("Sensor information from node address 0x%04X\r\n", src);
+//    NRF_LOG_INFO("Humidity:" NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(status.humidity));
+//    NRF_LOG_INFO("Temperature: " NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(status.temperature));
+    uint32_t server_index = server_index_get(p_self);
+
+    ret_packet[0] = 0;
+    ret_packet[1] = 0;
+    ret_packet[2] = 0;
+
+    /* added by Brandon */
     drv_ext_light_rgb_sequence_t led_sequence = SEQUENCE_DEFAULT_VALUES;
     led_sequence.sequence_vals.on_intensity = (uint8_t) (DEFAULT_LED_INTENSITY_PERCENT * 2.55f);
     led_sequence.sequence_vals.off_time_ms = 0; // Set to zero so it is detected as one-shot
@@ -171,11 +199,10 @@ static void sensor_status_cb(const simple_thingy_client_t * p_self, sensor_readi
     drv_ext_light_rgb_sequence(DRV_EXT_RGB_LED_LIGHTWELL, &led_sequence);
     /* ----- */
 
-    nus_response_send(NUS_RSP_SENSOR_READING, server_index, ret_packet, sizeof(ret_packet));
+    nus_response_send(NUS_RSP_VENT_STATUS, server_index, ret_packet, sizeof(ret_packet));
 }
 
-// *****************************************************
-// added by Brandon Jeong
+
 static void sensor_timer_handler()
 {
     simple_thingy_server_t m_server;
@@ -204,6 +231,8 @@ void drv_humidity_evt_handler(drv_humidity_evt_t evt)
         NRF_LOG_INFO("Humidity sensor error\r\n");
     }
 }
+
+/* ---------- */
 
 APP_TIMER_DEF(m_sensor_timer_id);  
 void sensor_init()
@@ -362,6 +391,8 @@ static void access_setup(void)
     {
         m_clients[i].led_status_cb = led_status_cb;
         m_clients[i].sensor_status_cb = sensor_status_cb;
+        m_clients[i].vent_status_cb = vent_status_cb;        
+
         ERROR_CHECK(simple_thingy_client_init(&m_clients[i], i));
     }
 
@@ -494,7 +525,7 @@ void nus_command_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
         case NUS_CMD_AUTO_PROV:
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "provisioning_enable_auto \n\r");   
             provisioning_enable_auto(p_data[3]);
-            break;
+            break;         
         case NUS_CMD_SENSOR_SET:
             if(length == 3){  //legacy setting for nRFMesh APP
                 m_sensor_config[server_index].report_timer ^= 1;
@@ -505,6 +536,28 @@ void nus_command_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
             __LOG(LOG_SRC_APP, LOG_LEVEL_INFO,"Sensor set error code = %d\n\r", err_code);
             nus_response_send(NUS_RSP_SENSOR_SET, (uint32_t)server_index, (uint8_t * )&err_code, sizeof(err_code));
             break;
+        /* added by Brandon */
+        case NUS_CMD_VENT_OPEN: 
+            if(length == 3){  //legacy setting for nRFMesh APP
+                m_sensor_config[server_index].report_timer ^= 1;
+            }else{
+                m_sensor_config[server_index].report_timer = p_data[3];
+            }
+            err_code = simple_thingy_client_vent_open(&m_clients[server_index], m_sensor_config[server_index]);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO,"Vent open error code = %d\n\r", err_code);
+            nus_response_send(NUS_RSP_VENT_OPEN, (uint32_t)server_index, (uint8_t * )&err_code, sizeof(err_code));
+            break;
+        case NUS_CMD_VENT_CLOSE:
+            if(length == 3){  //legacy setting for nRFMesh APP
+                m_sensor_config[server_index].report_timer ^= 1;
+            }else{
+                m_sensor_config[server_index].report_timer = p_data[3];
+            }
+            err_code = simple_thingy_client_vent_close(&m_clients[server_index], m_sensor_config[server_index]);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO,"Vent close error code = %d\n\r", err_code);
+            nus_response_send(NUS_RSP_VENT_CLOSE, (uint32_t)server_index, (uint8_t * )&err_code, sizeof(err_code));
+            break;
+        /* --------- */
         case NUS_CMD_LED_SET:
             memcpy(&led_state, &p_data[3], length-3);
             if(server_index == 0x0A || server_index == 0x0B)
@@ -834,7 +887,7 @@ int main(void)
     /* added by Brandon */
     sensor_init();
     app_timer_create(&m_sensor_timer_id, APP_TIMER_MODE_REPEATED, sensor_timer_handler);
-    app_timer_start(m_sensor_timer_id, APP_TIMER_TICKS(3000), NULL);
+    app_timer_start(m_sensor_timer_id, APP_TIMER_TICKS(5000), NULL);
     /* ----- */
 
     mesh_core_setup();
