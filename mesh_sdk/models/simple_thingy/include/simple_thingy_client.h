@@ -67,6 +67,7 @@ typedef struct __simple_thingy_client simple_thingy_client_t;
  */
 typedef void (*simple_thingy_led_status_cb_t)(const simple_thingy_client_t * p_self, ble_uis_led_t led_state, uint16_t src);
 typedef void (*simple_thingy_sensor_status_cb_t)(const simple_thingy_client_t * p_self, sensor_reading_t sensor_info, uint16_t src);
+typedef void (*simple_thingy_vent_status_cb_t)(const simple_thingy_client_t * p_self);
 
 /** Simple OnOff Client state structure. */
 struct __simple_thingy_client
@@ -76,11 +77,19 @@ struct __simple_thingy_client
     /** Status callback called after status received from server. */
     simple_thingy_led_status_cb_t    led_status_cb;
     simple_thingy_sensor_status_cb_t sensor_status_cb;
+    /* added by Brandon */
+    simple_thingy_vent_status_cb_t vent_status_cb;    
+    /* ---------- */
+
     /** Internal client state. */
     struct
     {
         bool led_set_reliable_transfer_active; /**< Variable used to determine if a transfer for LED set is currently active. */
         bool sensor_config_reliable_transfer_active; /**< Variable used to determine if a transfer for sensor config is currently active. */
+        /* added by Brandon */
+        bool vent_open_reliable_transfer_active; 
+        bool vent_close_reliable_transfer_active; 
+        /* ---------- */
         simple_thingy_msg_led_set_t data;  /**< Variable reflecting the data stored in the server. */
     } state;
 };
@@ -157,6 +166,10 @@ uint32_t simple_thingy_client_led_set_unreliable(simple_thingy_client_t * p_clie
  */
 
 uint32_t simple_thingy_client_sensor_set(simple_thingy_client_t * p_client, sensor_config_t sensor_config);
+/* added by Brandon */
+uint32_t simple_thingy_client_vent_open(simple_thingy_client_t * p_client, sensor_config_t sensor_config);
+uint32_t simple_thingy_client_vent_close(simple_thingy_client_t * p_client, sensor_config_t sensor_config);
+/* ---------- */
 
 /** @} end of SIMPLE_THINGY_CLIENT */
 

@@ -134,7 +134,6 @@ static void sensor_timer_handler()
 {
     // turn the led on..
     ble_uis_led_t led_breath_red = {.mode = BLE_UIS_LED_MODE_BREATHE_ONE_SHOT, 
-//                                  .data.mode_breathe.color_mix = DRV_EXT_LIGHT_COLOR_RED,
                                   .data.mode_breathe.color_mix = DRV_EXT_LIGHT_COLOR_GREEN,
                                   .data.mode_breathe.intensity  = DEFAULT_LED_INTENSITY_PERCENT,
                                   .data.mode_breathe.delay = DEFAULT_LED_OFF_TIME_MS};
@@ -336,50 +335,60 @@ void servo_stop()
 
 void vent_open_cb(const simple_thingy_server_t * server)
 {
-  uint32_t value = 0;
 
-  servo_stop();  
+ // turn the led on..
+//    ble_uis_led_t led_breath_red = {.mode = BLE_UIS_LED_MODE_BREATHE_ONE_SHOT, 
+//                                  .data.mode_breathe.color_mix = DRV_EXT_LIGHT_COLOR_RED,                                  
+//                                  .data.mode_breathe.intensity  = DEFAULT_LED_INTENSITY_PERCENT,
+//                                  .data.mode_breathe.delay = DEFAULT_LED_OFF_TIME_MS};
+//    led_set(&led_breath_red, NULL);
 
-  app_pwm_enable(&PWM1);
-  nrf_gpio_cfg_output(2);
-  nrf_gpio_cfg_output(3);
+    uint32_t value = 0;
 
-  for (uint8_t i = 0; i < 20; i++) {
-    value = i * 5;
+    servo_stop();  
 
-    /* Set the duty cycle - keep trying until PWM is ready... */
-    while (app_pwm_channel_duty_set(&PWM1, 0, value) == NRF_ERROR_BUSY)
-      ;
+    app_pwm_enable(&PWM1);
+    nrf_gpio_cfg_output(2);
+    nrf_gpio_cfg_output(3);
 
-    APP_ERROR_CHECK(app_pwm_channel_duty_set(&PWM1, 1, value));
-    nrf_delay_ms(25);    
-  } 
+    for (uint8_t i = 0; i < 20; i++) {
+      value = i * 5;
 
-  servo_stop();
+
+      /* Set the duty cycle - keep trying until PWM is ready... */
+      while (app_pwm_channel_duty_set(&PWM1, 0, value) == NRF_ERROR_BUSY)
+        ;
+
+      APP_ERROR_CHECK(app_pwm_channel_duty_set(&PWM1, 1, value));
+      nrf_delay_ms(25);    
+    } 
+
+    servo_stop();
 }
 
 void vent_close_cb(const simple_thingy_server_t * server)
 {
-  uint32_t value = 0;
+    
+    uint32_t value = 0;
 
-  servo_stop();  
+    servo_stop();  
 
-  app_pwm_enable(&PWM1);
-  nrf_gpio_cfg_output(2);
-  nrf_gpio_cfg_output(3);
+    app_pwm_enable(&PWM1);
+    nrf_gpio_cfg_output(2);
+    nrf_gpio_cfg_output(3);
 
-  for (uint8_t i = 0; i < 20; i++) {
-    value = 100 - i * 5;
+    for (uint8_t i = 0; i < 20; i++) {
+      value = 100 - i * 5;
 
-    /* Set the duty cycle - keep trying until PWM is ready... */
-    while (app_pwm_channel_duty_set(&PWM1, 0, value) == NRF_ERROR_BUSY)
-      ;
+      /* Set the duty cycle - keep trying until PWM is ready... */
+      while (app_pwm_channel_duty_set(&PWM1, 0, value) == NRF_ERROR_BUSY)
+        ;
 
-    APP_ERROR_CHECK(app_pwm_channel_duty_set(&PWM1, 1, value));
-    nrf_delay_ms(25);    
-  } 
+      APP_ERROR_CHECK(app_pwm_channel_duty_set(&PWM1, 1, value));
+      nrf_delay_ms(25);    
+    } 
 
-  servo_stop();  
+    servo_stop();  
 }
 /* ---------- */
 
@@ -389,6 +398,10 @@ static void configuration_setup(void * p_unused)
     m_server.led_get_cb = led_get_cb;
     m_server.led_set_cb = led_set_cb;
     m_server.sensor_set_cb = sensor_set_cb;
+    /* added by Brandon */
+    m_server.vent_open_cb = vent_open_cb;
+    m_server.vent_close_cb = vent_close_cb;
+    /* ---------- */
     ERROR_CHECK(simple_thingy_server_init(&m_server, 0));
     ERROR_CHECK(access_model_subscription_list_alloc(m_server.model_handle));
 }
@@ -465,6 +478,7 @@ void servo_config()
     app_pwm_enable(&PWM1);
     nrf_gpio_cfg_output(2);
     nrf_gpio_cfg_output(3);
+
 }
 /* --------- */
 
@@ -494,7 +508,17 @@ int main(void)
     }
 
     __LOG_INIT(LOG_SRC_APP, LOG_LEVEL_INFO, LOG_CALLBACK_DEFAULT);
-    
+
+     // Initialize.
+    APP_SCHED_INIT(SCHED_MAX_EVENT_DATA_SIZE, SCHED_QUEUE_SIZE);
+    err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+    board_init();
+    thingy_init();    
+    sensor_init();
+    mesh_stack_init();
+
    servo_config();
 
     for (;;)

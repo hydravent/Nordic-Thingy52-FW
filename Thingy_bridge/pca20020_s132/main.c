@@ -163,6 +163,7 @@ static void sensor_status_cb(const simple_thingy_client_t * p_self, sensor_readi
     NRF_LOG_INFO("Temperature: " NRF_LOG_FLOAT_MARKER "\r\n", NRF_LOG_FLOAT(status.temperature));
     uint32_t server_index = server_index_get(p_self);
 
+
     ret_packet[0] = (int8_t)status.temperature;
     ret_packet[1] = (uint8_t)((status.temperature - ((uint8_t)status.temperature))*100.0f);
     ret_packet[2] = status.humidity;

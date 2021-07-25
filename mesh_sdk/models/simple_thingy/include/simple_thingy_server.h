@@ -44,6 +44,11 @@
 #include "ble_uis.h"
 #include "simple_thingy_common.h"
 
+/* added by Brandon */
+#define VENT_OPENED  1
+#define VENT_CLOSED 0
+/* --------- */
+
 /**
  * @defgroup SIMPLE_THINGY_SERVER Simple OnOff Server
  * @ingroup SIMPLE_THINGY_MODEL
@@ -98,7 +103,6 @@ typedef void (*simple_thingy_vent_open_cb_t)(const simple_thingy_server_t * p_se
  * @returns 
  */
 typedef void (*simple_thingy_vent_close_cb_t)(const simple_thingy_server_t * p_self);
-
 
 /** Simple Thingy Server state structure. */
 struct __simple_thingy_server

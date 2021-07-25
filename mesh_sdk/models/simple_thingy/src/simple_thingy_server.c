@@ -45,6 +45,10 @@
 #include "access.h"
 #include "nrf_mesh_assert.h"
 
+/* added by Brandon */
+static bool vent_status = VENT_CLOSED;
+/* ---------- */
+
 /*****************************************************************************
  * Static functions
  *****************************************************************************/
@@ -80,6 +84,20 @@ static void reply_sensor_config_status(const simple_thingy_server_t * p_server,
     (void) access_model_reply(p_server->model_handle, p_message, &reply);
 }
 
+static void reply_vent_status(const simple_thingy_server_t * p_server,
+                         const access_message_rx_t * p_message,
+			 sensor_config_t present_sensor_cfg)
+{
+    simple_thingy_msg_sensor_config_t sensor_cfg;
+    memcpy(&sensor_cfg.sensor_config, &present_sensor_cfg, sizeof(present_sensor_cfg));
+    access_message_tx_t reply;
+    reply.opcode.opcode = SIMPLE_THINGY_OPCODE_VENT_STATUS;
+    reply.opcode.company_id = ACCESS_COMPANY_ID_NORDIC;
+    reply.p_buffer = (const uint8_t *) &sensor_cfg;
+    reply.length = sizeof(sensor_cfg);
+
+    (void) access_model_reply(p_server->model_handle, p_message, &reply);
+}
 /*****************************************************************************
  * Opcode handler callbacks
  *****************************************************************************/
@@ -139,18 +157,38 @@ static void handle_sensor_config_set_cb(access_model_handle_t handle, const acce
 /* added by Brandon */
 static void handle_vent_open_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
 {
-    simple_thingy_server_t * p_server = p_args;
-    NRF_MESH_ASSERT(p_server->vent_open_cb != NULL);
+   simple_thingy_server_t * p_server = p_args;
+   NRF_MESH_ASSERT(p_server->vent_open_cb != NULL);
 
-    p_server->vent_open_cb(p_server);        
+   if (vent_status == VENT_CLOSED) {
+      p_server->vent_open_cb(p_server);  
+      vent_status = VENT_OPENED;
+    }
+    else {
+      p_server->vent_close_cb(p_server);  
+      vent_status = VENT_CLOSED;
+    }
+       sensor_config_t sensor_cfg = (((simple_thingy_msg_sensor_config_t*) p_message->p_data)->sensor_config);
+      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "sensor cfg = %d\n", sensor_cfg.report_timer);
+        //    p_server->sensor_set_cb(p_server, sensor_cfg);
+      reply_vent_status(p_server, p_message, sensor_cfg);  
+
 }
 
 static void handle_vent_close_cb(access_model_handle_t handle, const access_message_rx_t * p_message, void * p_args)
 {
-    simple_thingy_server_t * p_server = p_args;
-    NRF_MESH_ASSERT(p_server->vent_close_cb != NULL);
+    if (vent_status == VENT_OPENED) {              
+      simple_thingy_server_t * p_server = p_args;
+      NRF_MESH_ASSERT(p_server->vent_close_cb != NULL);
+    
+      p_server->vent_close_cb(p_server);  
 
-    p_server->vent_close_cb(p_server);  
+       sensor_config_t sensor_cfg = (((simple_thingy_msg_sensor_config_t*) p_message->p_data)->sensor_config);
+      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "sensor cfg = %d\n", sensor_cfg.report_timer);
+  //    p_server->sensor_set_cb(p_server, sensor_cfg);
+//      reply_vent_status(p_server, p_message, sensor_cfg);  
+      vent_status = VENT_CLOSED;
+    }
 }
 /* --------- */
 
@@ -173,7 +211,9 @@ uint32_t simple_thingy_server_init(simple_thingy_server_t * p_server, uint16_t e
     if (p_server == NULL ||
         p_server->led_get_cb == NULL ||
         p_server->led_set_cb == NULL ||
-	p_server->sensor_set_cb == NULL)
+	p_server->sensor_set_cb == NULL ||
+        p_server->vent_open_cb == NULL ||
+        p_server->vent_close_cb == NULL)
     {
         return NRF_ERROR_NULL;
     }

@@ -53,6 +53,11 @@ typedef enum{
     NUS_RSP_SENSOR_SET = 0x05,
     NUS_RSP_SENSOR_READING = 0x06,
     NUS_RSP_LED_STATE = 0x07,
+    /* added by Brandon */
+    NUS_RSP_VENT_OPEN = 0x08,
+    NUS_RSP_VENT_CLOSE = 0x09,
+    NUS_RSP_VENT_STATUS = 0x0a,
+    /* ---------- */
     NUS_RSP_NONE_ID = 0xffff,
 }nus_rsp_t;
 
@@ -65,6 +70,10 @@ typedef enum
     NUS_CMD_GROUP_DELETE = 0x05,
     NUS_CMD_UNPROV_SCAN = 0x06,
     NUS_CMD_PROV_DEV = 0x07,
+    /* added by Brandon */
+    NUS_CMD_VENT_OPEN  = 0x08,
+    NUS_CMD_VENT_CLOSE = 0x09,
+    /* ---------- */
 } nus_cmd_t;
 
 uint32_t m_nus_init(m_ble_service_handle_t * p_handle, ble_nus_data_handler_t data_handler);
